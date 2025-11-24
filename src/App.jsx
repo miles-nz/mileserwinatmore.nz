@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import "./App.css";
 
 function Header({ title }) {
-    return <h1 className="centered-header stack-sans-notch-header">{title}</h1>;
+    return <h1 className="stack-sans-notch-header">{title}</h1>;
 }
 
 function Button({ onClick, classes }) {
@@ -21,15 +21,16 @@ function App() {
     const [count, setCount] = useState(0);
     function handleClick() {
         setCount(count + 1);
-        console.log(`Button clicked ${count} times`);
     }
     return (
-        <motion.div key={count} animate={{ rotate: 360 }}>
-            <div className="centered-group">
-                <Header title="Miles Erwin-Atmore" />
-                <Button onClick={handleClick} classes="centered-button" />
-            </div>
-        </motion.div>
+        <div className="centered-container">
+            <motion.div key={count} animate={{ rotate: 360 }}>
+                <div className="centered-group">
+                    <Header title="Miles Erwin-Atmore" />
+                    <Button onClick={handleClick} />
+                </div>
+            </motion.div>
+        </div>
     );
 }
 
