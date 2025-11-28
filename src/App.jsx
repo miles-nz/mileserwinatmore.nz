@@ -1,66 +1,146 @@
-import { useState } from "react";
-// eslint-disable-next-line no-unused-vars
-import { motion } from "motion/react";
-import { ImSpinner11 } from "react-icons/im";
-import Button from "./components/Button.jsx";
-import SpinningIcon from "./components/SpinningIcon.jsx";
+import { useState, useRef, useCallback, useEffect } from "react";
+
+import Home from "./pages/Home.jsx";
+import About from "./pages/About.jsx";
+import Page from "./pages/Page.jsx";
+import NextPageChevron from "./components/NextPageChevron.jsx";
+
 import "./App.css";
 
-function Header({ title }) {
-    return <h1 className="stack-sans-notch-header">{title}</h1>;
-}
+const PAGES = [Home, About];
+
+const useIntersectionObserver = (pageRefs, callback) => {
+    useEffect(() => {
+        const elements = pageRefs.current;
+        if (!elements || elements.length === 0 || !callback) return;
+
+        const options = {
+            root: document.getElementById("root"),
+            rootMargin: "0px",
+            threshold: 0.7,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            let mostVisibleIndex = null;
+            let maxIntersectionRatio = 0;
+
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const index = elements.findIndex(
+                        (el) => el === entry.target
+                    );
+                    const ratio = entry.intersectionRatio;
+
+                    if (ratio > maxIntersectionRatio) {
+                        maxIntersectionRatio = ratio;
+                        mostVisibleIndex = index;
+                    }
+                }
+            });
+
+            if (mostVisibleIndex !== null) {
+                callback(mostVisibleIndex);
+            }
+        }, options);
+
+        elements.forEach((el) => {
+            if (el) {
+                observer.observe(el);
+            }
+        });
+
+        return () => {
+            observer.disconnect();
+        };
+    }, [pageRefs, callback]);
+};
 
 function App() {
-    const [count, setCount] = useState(0);
-    function handleClick() {
-        setCount(count + 1);
-    }
+    const [currentPageIndex, setCurrentPageIndex] = useState(0);
+
+    const pageRefs = useRef([]);
+
+    const scrollToPage = useCallback((index) => {
+        if (index >= 0 && index < PAGES.length) {
+            const targetElement = pageRefs.current[index];
+
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                });
+                setCurrentPageIndex(index);
+            } else {
+                console.error(
+                    `Error: Target element for index ${index} not found in refs.`
+                );
+            }
+        }
+    }, []);
+
+    useEffect(() => {
+        if (pageRefs.current.length === PAGES.length) {
+            // Defer the state update to allow the current render to finish.
+            const timerId = setTimeout(() => {
+                scrollToPage(0);
+            }, 0);
+
+            // Cleanup the timer
+            return () => clearTimeout(timerId);
+        }
+    }, [scrollToPage]);
+
+    const handleNextPage = () => {
+        const nextIndex = currentPageIndex + 1;
+        if (nextIndex < PAGES.length) {
+            console.log("Scrolling to page index:", nextIndex);
+            scrollToPage(nextIndex);
+        } else if (nextIndex === PAGES.length) {
+            scrollToPage(0);
+        }
+    };
+
+    const setIntersectingIndex = useCallback(
+        (index) => {
+            if (index !== null && index !== currentPageIndex) {
+                setCurrentPageIndex(index);
+            }
+        },
+        [currentPageIndex]
+    );
+
+    useIntersectionObserver(pageRefs, setIntersectingIndex);
+
     return (
-        <div className="app-container">
-            <div className="centered-container">
-                <motion.div
-                    initial={{ x: -360, y: -360, scale: 0.3 }}
-                    animate={{
-                        x: 0,
-                        y: 0,
-                        scale: 1,
-                        transition: {
-                            type: "spring",
-                            mass: 0.5,
-                            damping: 2,
-                            stiffness: 15,
-                        },
-                    }}
-                >
-                    <motion.div
-                        key={count}
-                        animate={{
-                            rotate: 360,
-                            transition: {
-                                type: "spring",
-                                mass: 0.5,
-                                damping: 2,
-                                stiffness: 15,
-                            },
+        <div>
+            {PAGES.map((PageComponent, index) => {
+                return (
+                    <section
+                        key={index}
+                        ref={(el) => {
+                            if (el) {
+                                pageRefs.current[index] = el;
+                            }
                         }}
+                        className="page-container"
                     >
-                        <div className="centered-group">
-                            <Header title="Miles Erwin-Atmore" />
-                            <Button
-                                onClick={handleClick}
-                                text={
-                                    <SpinningIcon
-                                        icon={<ImSpinner11 />}
-                                    ></SpinningIcon>
-                                }
-                            />
+                        <PageComponent
+                            text={
+                                "index: " +
+                                index +
+                                ", currentPageIndex: " +
+                                currentPageIndex
+                            }
+                        />
+                        <div className="footer-container">
+                            <NextPageChevron handler={handleNextPage} />
+                            <div className="bottom-text">
+                                <div>site under construction.</div>
+                            </div>
                         </div>
-                    </motion.div>
-                </motion.div>
-            </div>
-            <div className="bottom-text">
-                site under construction. have fun spinning my name.
-            </div>
+                    </section>
+                );
+            })}
         </div>
     );
 }

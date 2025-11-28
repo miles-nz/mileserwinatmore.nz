@@ -8,9 +8,39 @@ body {
 }
 
 .app-container {
+  flex-direction: column;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100vw; 
+}
+
+.page-container {
+    min-height: 100vh;
+    scroll-snap-align: start;
+    scroll-behavior: smooth; 
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.scroll-snap-item {
+    scroll-snap-align: start; 
+    scroll-behavior: smooth; 
+}
+
+.footer-container {
+  margin-bottom: auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 16px 24px;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 
 .bottom-text {
@@ -28,6 +58,7 @@ body {
 
 .centered-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex: 1;
@@ -55,6 +86,21 @@ body {
   cursor: pointer;
   border-radius: 50px;
   box-shadow: 0px 0px 50px 1px #6a9bef;
+}
+
+.chevron-down {
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 0px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.chevron-down:hover {
+  color: #bdbdbd;
 }
 
 .button:hover {

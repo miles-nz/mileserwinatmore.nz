@@ -11,9 +11,19 @@
             href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&display=swap"
             rel="stylesheet"
         />
+
+        <style>
+            #root {
+                height: 100vh;
+                overflow-y: scroll;
+                scroll-snap-type: y mandatory;
+                display: block;
+                background-color: black;
+            }
+        </style>
     </head>
     <body>
-        <div id="root"></div>
+        <div id="root" class="app-container"></div>
         <script type="module" src="/src/main.jsx"></script>
     </body>
 </html>
