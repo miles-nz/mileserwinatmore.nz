@@ -1,0 +1,393 @@
+/* Color and global variables */
+:root {
+    --cv-primary: #00684a;
+    --cv-primary-dark: #00553a;
+    --cv-focus: #3a7a9c;
+    --cv-bg: #f8fafb;
+    --cv-sidebar-bg: #f0f2ef;
+    --cv-header-text: #0b3b2e;
+    --cv-body-text: #1a1f1c;
+    --cv-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+    --cv-dividers: #c2c7c0;
+    --cv-dates: #7d8582;
+
+    --hover-transition: transform 0.75s cubic-bezier(0.4, 1.3, 0.6, 1);
+    --animation-intensity: 0.5;
+    --cv-width: 649px;
+    --cv-height: 840px;
+}
+
+/* CV Page Specific Styles */
+.cv-page-container {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+}
+
+.cv-main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: var(--cv-width);
+    height: var(--cv-height);
+    padding: 40px;
+    background: var(--cv-bg);
+    border-radius: 19px;
+    box-shadow: var(--cv-shadow);
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.75s cubic-bezier(0.4, 1.3, 0.6, 1);
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    will-change: transform;
+}
+
+.cv-main-container:hover {
+    transform: scale(calc(1 + 0.005 * var(--animation-intensity)))
+        translateY(calc(-4px * var(--animation-intensity)));
+}
+
+.cv-body {
+    color: var(--cv-body-text);
+    font-size: 11px;
+    font-family: "Inter", sans-serif;
+}
+
+.cv-header {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cv-name {
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--cv-primary);
+    margin: 0;
+    letter-spacing: -1px;
+    font-family: "Stack Sans Notch", "Inter", sans-serif;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: radial-gradient(
+        circle at var(--glare-x, 50%) var(--glare-y, 50%),
+        #30856c 0%,
+        var(--cv-primary) 40%,
+        var(--cv-primary-dark) 100%
+    );
+}
+
+.cv-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 11px;
+    color: #222;
+    gap: 3px;
+}
+
+.cv-contact-link {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.cv-contact-link:hover,
+.cv-contact-link:focus {
+    opacity: 0.75;
+    color: inherit;
+}
+
+.cv-content-grid {
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: 194px 1fr;
+    height: auto;
+    gap: 5px;
+    overflow: visible;
+}
+
+.cv-sidebar {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: 20px;
+    background: var(--cv-sidebar-bg);
+    border-left: 3px solid var(--cv-primary);
+    padding: 12px 5px 0px 10px;
+    box-sizing: border-box;
+    max-height: 100%;
+    width: 194px;
+    overflow: visible;
+    transition: var(--hover-transition);
+}
+
+.cv-sidebar:hover {
+    transform: translateX(calc(3px * var(--animation-intensity)));
+}
+
+.cv-sidebar::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 0px;
+    background: var(--cv-primary);
+    transition:
+        width 0.5s cubic-bezier(0.4, 1.3, 0.6, 1),
+        left 0.5s cubic-bezier(0.4, 1.3, 0.6, 1);
+    z-index: 2;
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    perspective: 1000px;
+    -moz-perspective: 1000px;
+    will-change: width, left;
+}
+
+.cv-sidebar:hover::before {
+    width: 1px;
+    left: -4px;
+}
+
+@-moz-document url-prefix() {
+    .cv-sidebar::before {
+        display: none;
+    }
+    .cv-sidebar:hover::before {
+        transform: none;
+    }
+}
+
+.cv-main-content {
+    min-width: 0;
+    padding: 12px 0px 0px 10px;
+    transition: var(--hover-transition);
+}
+
+.cv-main-content:hover {
+    transform: translateX(calc(3px * var(--animation-intensity)));
+}
+
+.cv-skills {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+    gap: 10px;
+}
+
+.cv-skills-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.cv-skills-sections > div {
+    flex: 1;
+}
+.cv-skills ul {
+    list-style-type: disc;
+    list-style-position: outside;
+    padding-left: 18px;
+    padding-bottom: 4px;
+    margin: 0;
+    font-size: 11px;
+    color: var(--cv-body-text);
+    overflow: visible;
+}
+
+h2 {
+    font-size: 16px;
+    color: var(--cv-header-text);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    margin: 0;
+    text-transform: none;
+    border-bottom: 1px solid var(--cv-dividers);
+    font-family: "Stack Sans Text", "Inter", sans-serif;
+}
+h3 {
+    margin: 0;
+}
+
+.cv-education {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.cv-education h3 {
+    font-size: 12px;
+    color: var(--cv-body-text);
+    font-weight: 700;
+}
+.cv-education .cv-specialisation {
+    font-size: 11px;
+}
+.cv-education .cv-university {
+    font-size: 10px;
+}
+
+.cv-experience {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cv-experience .cv-role {
+    margin-bottom: 2rem;
+}
+.cv-experience .cv-dates {
+    font-size: 11px;
+    color: var(--cv-dates);
+    margin-bottom: 8px;
+}
+.cv-experience strong {
+    color: inherit;
+    font-weight: 700;
+}
+
+.cv-role ul {
+    padding-left: 18px;
+}
+
+/* --- Download Button Portal --- */
+.pdf-download-portal {
+    position: fixed;
+    bottom: 0.5rem;
+    left: 50%;
+    z-index: 9999;
+}
+
+/* --- Download Button (mobile base) --- */
+.pdf-download-fab {
+    margin: 0;
+    border-radius: 15px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.pdf-download-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 14px;
+    transition: transform 0.18s cubic-bezier(0.4, 1.3, 0.6, 1);
+}
+
+.pdf-download-icon {
+    width: 1.8rem;
+    height: 1.8rem;
+    flex-shrink: 0;
+    display: block;
+}
+
+.pdf-download-label {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    font-family: "Inter", sans-serif;
+}
+
+.pdf-download-btn:focus {
+    outline: 2px solid var(--cv-focus);
+}
+
+.pdf-download-btn:hover {
+    opacity: 0.75;
+    color: #fff;
+}
+
+/* --- Download Button (tablet and above) --- */
+@media (min-width: 768px) {
+    .pdf-download-portal {
+        bottom: 0.5rem;
+        left: 50%;
+    }
+    .pdf-download-btn {
+        padding: 6px;
+    }
+    .pdf-download-icon {
+        width: 24px;
+        height: 24px;
+    }
+    .pdf-download-label {
+        font-size: 12px;
+    }
+}
+
+/* --- Items Hover --- */
+.cv-skills ul li,
+.cv-experience .cv-role li,
+.cv-education-entry,
+.cv-role-summary,
+.cv-role-header,
+.cv-skills-section,
+.cv-name {
+    transition: transform 0.18s cubic-bezier(0.4, 1.3, 0.6, 1);
+    border-radius: 0.4em;
+    padding: 1px 1px;
+    margin-right: 15px;
+}
+.cv-skills ul li:hover,
+.cv-skills ul li:focus,
+.cv-experience .cv-role li:hover,
+.cv-experience .cv-role li:focus,
+.cv-education-entry:hover,
+.cv-education-entry:focus,
+.cv-role-summary:hover,
+.cv-role-summary:focus,
+.cv-role-header:hover,
+.cv-role-header:focus,
+.cv-skills-section:hover,
+.cv-skills-section:focus,
+.cv-name:hover,
+.cv-name:focus {
+    transform: translateX(calc(5px * var(--animation-intensity)))
+        scale(calc(1 + 0.05 * var(--animation-intensity)));
+    outline: none;
+}
+
+/* --- Contact Link Underline Animation --- */
+.cv-contact-link {
+    position: relative;
+}
+.cv-contact-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background: var(--cv-primary);
+    border-radius: 1px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s cubic-bezier(0.25, 0, 0, 1);
+    pointer-events: none;
+}
+.cv-contact-link:hover::after,
+.cv-contact-link:focus::after {
+    transform: scaleX(1);
+    transition: transform 0.3s cubic-bezier(0.25, 0, 0, 1);
+}
+
+/* --- Disable transitions during scroll --- */
+.is-scrolling .cv-main-container,
+.is-scrolling .cv-sidebar,
+.is-scrolling .cv-main-content,
+.is-scrolling .cv-skills ul li,
+.is-scrolling .cv-experience .cv-role li,
+.is-scrolling .cv-education-entry,
+.is-scrolling .cv-role-summary,
+.is-scrolling .cv-role-header,
+.is-scrolling .cv-skills-section {
+    transition: none !important;
+}

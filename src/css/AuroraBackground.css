@@ -1,0 +1,54 @@
+.aurora-bg-wrapper {
+    user-select: none;
+}
+
+.aurora-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.7;
+    mix-blend-mode: lighten;
+    pointer-events: none;
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.aurora-blob-1 {
+    width: 40vw;
+    height: 60vw;
+    left: -20vw;
+    top: -10vw;
+    background: radial-gradient(
+        circle at 30% 30%,
+        #00c87a,
+        var(--cv-primary) 30%,
+        transparent 60%
+    );
+}
+
+.aurora-blob-2 {
+    width: 45vw;
+    height: 50vw;
+    right: -10vw;
+    top: 0;
+    background: radial-gradient(
+        circle at 70% 0%,
+        #c9a8ff,
+        var(--cv-focus) 30%,
+        transparent 60%
+    );
+}
+
+.aurora-blob-3 {
+    width: 50vw;
+    height: 50vw;
+    left: 20vw;
+    bottom: -20vw;
+    background: radial-gradient(
+        circle at 50% 70%,
+        #e8a030 10%,
+        #e07050 40%,
+        #d95f7a 70%,
+        #d95f7a 100%
+    );
+}
