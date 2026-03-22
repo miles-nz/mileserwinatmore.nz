@@ -7,13 +7,12 @@
 html,
 body {
     height: 100%;
+    margin: 0;
     overflow: hidden;
 }
 
 body {
     font-size: 0.75rem;
-    min-height: 100vh;
-    height: 100dvh;
     background-color: black;
     color: white;
     font-family:
@@ -28,7 +27,6 @@ body {
         "Open Sans",
         "Helvetica Neue",
         sans-serif;
-    min-height: -webkit-fill-available;
 }
 
 h1 {
@@ -37,8 +35,7 @@ h1 {
 }
 
 .app-container {
-    height: 100vh;
-    height: 100dvh;
+    min-height: 100%;
     overflow: hidden;
 }
 

@@ -67,9 +67,7 @@ function CVContent() {
     }, []);
 
     useEffect(() => {
-        const scrollContainer = containerRef.current?.closest(
-            ".carousel-scroll-container",
-        );
+        const scrollContainer = document.getElementById("root");
         if (!scrollContainer) return;
 
         function onScroll() {

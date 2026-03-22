@@ -12,7 +12,7 @@ const BLOB_OFFSETS = [
 
 const lerp = (start, end, factor) => start + (end - start) * factor;
 
-const AuroraBackground = ({ style = {}, className = "", children }) => {
+const AuroraBackground = ({ style = {}, className = "" }) => {
     const blobRef1 = useRef(null);
     const blobRef2 = useRef(null);
     const blobRef3 = useRef(null);
@@ -54,11 +54,10 @@ const AuroraBackground = ({ style = {}, className = "", children }) => {
     }, []);
 
     return (
-        <div className={`aurora-bg-wrapper ${className}`}>
+        <div className={`aurora-bg-wrapper ${className}`} style={style}>
             <div className="aurora-blob aurora-blob-1" ref={blobRef1} />
             <div className="aurora-blob aurora-blob-2" ref={blobRef2} />
             <div className="aurora-blob aurora-blob-3" ref={blobRef3} />
-            {children}
         </div>
     );
 };

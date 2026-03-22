@@ -1,13 +1,11 @@
 .aurora-bg-wrapper {
     position: fixed;
     inset: 0;
-    width: 100%;
-    height: 100vh;
-    height: 100dvh;
-    overflow: hidden;
+    /* overflow: hidden; */
     z-index: 0;
     user-select: none;
-    min-height: -webkit-fill-available;
+    -webkit-user-select: none;
+    pointer-events: none;
 }
 
 .aurora-blob {
