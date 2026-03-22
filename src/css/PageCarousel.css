@@ -11,7 +11,9 @@
     flex-direction: column;
     overflow-y: auto;
     scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
+    overscroll-behavior-y: none;
     height: 100vh;
     height: 100dvh;
     transform: translateZ(0);
@@ -33,6 +35,7 @@
     min-height: 100vh;
     height: 100dvh;
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     display: flex;
     flex-direction: column;
     contain: strict;
