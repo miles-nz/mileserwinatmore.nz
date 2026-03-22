@@ -54,18 +54,7 @@ const AuroraBackground = ({ style = {}, className = "", children }) => {
     }, []);
 
     return (
-        <div
-            className={`aurora-bg-wrapper ${className}`}
-            style={{
-                position: "absolute",
-                inset: 0,
-                width: "100vw",
-                height: "100vh",
-                overflow: "hidden",
-                zIndex: 0,
-                ...style,
-            }}
-        >
+        <div className={`aurora-bg-wrapper ${className}`}>
             <div className="aurora-blob aurora-blob-1" ref={blobRef1} />
             <div className="aurora-blob aurora-blob-2" ref={blobRef2} />
             <div className="aurora-blob aurora-blob-3" ref={blobRef3} />

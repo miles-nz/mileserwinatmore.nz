@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import "../css/PageCarousel.css";
 
@@ -13,6 +13,12 @@ function PageCarousel({ pages }) {
     const scrollEndTimer = useRef(null);
     const [enableUpArrow, setEnableUpArrow] = useState(false);
     const [enableDownArrow, setEnableDownArrow] = useState(true);
+
+    useEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollTop = 0;
+        }
+    }, []);
 
     const handleScroll = () => {
         document.body.classList.add("is-scrolling");
