@@ -1,29 +1,12 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../css/ClickAnimations.css";
+import { useGlarePos } from "../hooks/useGlarePos.js";
 
 const ANIMATIONS = ["colourflash"];
 
 const Header = () => {
-    const [pos, setPos] = useState({ x: 0.5, y: 0.5 });
+    const glareStyle = useGlarePos();
     const [activeAnim, setActiveAnim] = useState(null);
-
-    useEffect(() => {
-        function handleMouseMove(e) {
-            setPos({
-                x: e.clientX / window.innerWidth,
-                y: e.clientY / window.innerHeight,
-            });
-        }
-        function handleMouseLeave() {
-            setPos({ x: 0.5, y: 0.5 });
-        }
-        window.addEventListener("mousemove", handleMouseMove);
-        window.addEventListener("mouseleave", handleMouseLeave);
-        return () => {
-            window.removeEventListener("mousemove", handleMouseMove);
-            window.removeEventListener("mouseleave", handleMouseLeave);
-        };
-    }, []);
 
     const handleClick = () => {
         if (activeAnim) return;
@@ -38,8 +21,7 @@ const Header = () => {
                 className={`cv-name click-anim-${activeAnim ?? "none"} ${activeAnim ? "active" : ""}`}
                 onClick={handleClick}
                 style={{
-                    "--glare-x": `${pos.x * 100}%`,
-                    "--glare-y": `${pos.y * 100}%`,
+                    ...glareStyle,
                     willChange: "transform",
                     cursor: "pointer",
                 }}

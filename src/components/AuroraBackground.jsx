@@ -30,6 +30,12 @@ const AuroraBackground = ({ style = {}, className = "" }) => {
             targetY = e.clientY / window.innerHeight;
         };
 
+        const handleTouchMove = (e) => {
+            const touch = e.touches[0];
+            targetX = touch.clientX / window.innerWidth;
+            targetY = touch.clientY / window.innerHeight;
+        };
+
         const animate = () => {
             currentX = lerp(currentX, targetX, 0.05);
             currentY = lerp(currentY, targetY, 0.05);
@@ -45,10 +51,14 @@ const AuroraBackground = ({ style = {}, className = "" }) => {
         };
 
         window.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener("touchmove", handleTouchMove, {
+            passive: true,
+        });
         rafId = requestAnimationFrame(animate);
 
         return () => {
             window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("touchmove", handleTouchMove);
             cancelAnimationFrame(rafId);
         };
     }, []);
