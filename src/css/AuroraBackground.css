@@ -4,7 +4,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-    bottom: env(safe-area-inset-bottom, 0);
+    height: 100%;
+    min-height: 100%;
+    min-height: -webkit-fill-available;
     overflow: hidden;
     z-index: 0;
     user-select: none;

@@ -1,10 +1,3 @@
-// eslint-disable-next-line no-unused-vars
-import { motion } from "motion/react";
-
-import Button from "../components/Button.jsx";
-import SpinningIcon from "../components/SpinningIcon.jsx";
-import { ImSpinner11 } from "react-icons/im";
-
 function Home() {
     return (
         <div className="centered-container">
