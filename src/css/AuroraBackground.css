@@ -1,7 +1,11 @@
 .aurora-bg-wrapper {
     position: fixed;
-    inset: 0;
-    /* overflow: hidden; */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    bottom: env(safe-area-inset-bottom, 0);
+    overflow: hidden;
     z-index: 0;
     user-select: none;
     -webkit-user-select: none;

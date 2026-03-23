@@ -10,10 +10,10 @@ const PAGES = [Home, CV];
 
 function App() {
     return (
-        <div className="app-container">
+        <>
             <AuroraBackground />
             <PageCarousel pages={PAGES} />
-        </div>
+        </>
     );
 }
 
