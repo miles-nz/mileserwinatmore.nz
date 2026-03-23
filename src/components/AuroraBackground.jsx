@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 
 // AuroraBackground: animated aurora effect
 
@@ -12,7 +13,7 @@ const BLOB_OFFSETS = [
 
 const lerp = (start, end, factor) => start + (end - start) * factor;
 
-const AuroraBackground = ({ style = {}, className = "" }) => {
+const AuroraBackground = () => {
     const blobRef1 = useRef(null);
     const blobRef2 = useRef(null);
     const blobRef3 = useRef(null);
@@ -63,12 +64,13 @@ const AuroraBackground = ({ style = {}, className = "" }) => {
         };
     }, []);
 
-    return (
-        <div className={`aurora-bg-wrapper ${className}`} style={style}>
+    return createPortal(
+        <div className="aurora-bg-wrapper">
             <div className="aurora-blob aurora-blob-1" ref={blobRef1} />
             <div className="aurora-blob aurora-blob-2" ref={blobRef2} />
             <div className="aurora-blob aurora-blob-3" ref={blobRef3} />
-        </div>
+        </div>,
+        document.body,
     );
 };
 
