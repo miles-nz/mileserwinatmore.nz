@@ -63,3 +63,24 @@
         #d95f7a 100%
     );
 }
+
+@media (max-width: 768px) {
+    .aurora-blob-1 {
+        width: 120vw;
+        height: 120vw;
+        left: -30vw;
+        top: -20vw;
+    }
+    .aurora-blob-2 {
+        width: 120vw;
+        height: 120vw;
+        right: -30vw;
+        top: -10vw;
+    }
+    .aurora-blob-3 {
+        width: 120vw;
+        height: 120vw;
+        left: -10vw;
+        bottom: -30vw;
+    }
+}
