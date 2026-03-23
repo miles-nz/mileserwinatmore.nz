@@ -1,13 +1,6 @@
 .aurora-bg-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100%;
-    min-height: 100%;
-    min-height: -webkit-fill-available;
-    z-index: 0;
+    overflow: hidden;
+    z-index: -1;
     user-select: none;
     -webkit-user-select: none;
     pointer-events: none;
