@@ -37,7 +37,6 @@ function CVScaleWrapper({ children }) {
             parent.style.alignItems = "center";
             parent.style.width = "100vw";
             parent.style.height = "100dvh";
-            parent.style.overflow = "hidden";
             parent.style.paddingLeft =
                 parent.style.paddingRight = `${mobilePadding * 100}vw`;
             parent.style.paddingTop =
