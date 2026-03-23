@@ -60,10 +60,28 @@ h1 {
     -webkit-text-fill-color: transparent;
     background-image: radial-gradient(
         circle at var(--glare-x, 50%) var(--glare-y, 50%),
-        rgba(255, 255, 255, 0.95) 0%,
-        rgba(255, 255, 255, 0.75) 40%,
-        rgba(255, 255, 255, 0.5) 100%
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.6) 40%,
+        rgba(255, 255, 255, 0.3) 100%
     );
+    margin: auto;
+}
+
+.home-subheader {
+    font-family: "Stack Sans Text", sans-serif;
+    font-weight: 300;
+    text-align: center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: radial-gradient(
+        circle at var(--glare-x, 50%) var(--glare-y, 50%),
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.6) 40%,
+        rgba(255, 255, 255, 0.3) 100%
+    );
+    margin: 0;
+    border: none;
 }
 
 /* Tablets and desktops */

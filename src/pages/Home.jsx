@@ -9,6 +9,9 @@ function Home() {
                 <h1 className="home-header" style={glareStyle}>
                     Miles Erwin-Atmore
                 </h1>
+                <h2 className="home-subheader" style={glareStyle}>
+                    Software Engineer | Full-Stack Development
+                </h2>
             </div>
         </div>
     );
