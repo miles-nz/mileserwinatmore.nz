@@ -69,6 +69,7 @@ h1 {
 
 .home-subheader {
     font-family: "Stack Sans Text", sans-serif;
+    font-size: 0.75rem;
     font-weight: 300;
     text-align: center;
     -webkit-background-clip: text;
@@ -87,6 +88,9 @@ h1 {
 /* Tablets and desktops */
 @media (min-width: 768px) {
     body {
+        font-size: 1rem;
+    }
+    .home-subheader {
         font-size: 1rem;
     }
 }
