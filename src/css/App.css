@@ -10,9 +10,12 @@ body {
     margin: 0;
 }
 
+html {
+    background-color: black;
+}
+
 body {
     font-size: 0.75rem;
-    background-color: black;
     color: white;
     font-family:
         system-ui,
@@ -48,10 +51,19 @@ h1 {
     flex: 1;
 }
 
-.stack-sans-notch-header {
+.home-header {
     font-family: "Stack Sans Notch", sans-serif;
     font-weight: 400;
     text-align: center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: radial-gradient(
+        circle at var(--glare-x, 50%) var(--glare-y, 50%),
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.75) 40%,
+        rgba(255, 255, 255, 0.5) 100%
+    );
 }
 
 /* Tablets and desktops */
