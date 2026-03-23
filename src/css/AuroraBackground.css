@@ -62,18 +62,18 @@
         width: 120vw;
         height: 120vw;
         left: -30vw;
-        top: -20vw;
+        top: 5vw;
     }
     .aurora-blob-2 {
         width: 120vw;
         height: 120vw;
         right: -30vw;
-        top: -10vw;
+        top: 5vw;
     }
     .aurora-blob-3 {
         width: 120vw;
         height: 120vw;
         left: -10vw;
-        bottom: -30vw;
+        bottom: -5vw;
     }
 }
