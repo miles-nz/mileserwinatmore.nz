@@ -13,27 +13,30 @@ const BLOB_OFFSETS = [
 
 const lerp = (start, end, factor) => start + (end - start) * factor;
 
-const getHeight = () =>
-    window.innerWidth <= 768 ? screen.height : window.innerHeight;
+const getHeight = () => {
+    return screen.height;
+};
 
 const AuroraBackground = () => {
     const blobRef1 = useRef(null);
     const blobRef2 = useRef(null);
     const blobRef3 = useRef(null);
     const [dimensions, setDimensions] = useState({
-        width: window.innerWidth,
+        width: screen.width,
         height: getHeight(),
     });
 
     useEffect(() => {
         function updateDimensions() {
             setDimensions({
-                width: window.innerWidth,
+                width: screen.width,
                 height: getHeight(),
             });
         }
-        window.addEventListener("resize", updateDimensions);
-        return () => window.removeEventListener("resize", updateDimensions);
+        window.addEventListener("orientationchange", updateDimensions);
+        return () => {
+            window.removeEventListener("orientationchange", updateDimensions);
+        };
     }, []);
 
     useEffect(() => {
