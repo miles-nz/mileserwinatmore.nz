@@ -6,7 +6,10 @@ const SCROLL_STEPS = 8;
 const SCROLL_DELTA = 8;
 const SCROLL_INTERVAL_MS = 30;
 const SCROLL_END_DELAY_MS = 150;
-const IS_SAFARI = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+// Use wheel event workaround on macOS Safari
+const IS_MACOS_SAFARI =
+    /^((?!chrome|android).)*safari/i.test(navigator.userAgent) &&
+    !/iPhone|iPad|iPod/.test(navigator.userAgent);
 
 const getScrollEl = () => document.getElementById("root");
 
@@ -45,7 +48,7 @@ function PageCarousel({ pages }) {
         const { clientHeight, scrollTop } = el;
         if (clientHeight === 0) return;
 
-        if (IS_SAFARI) {
+        if (IS_MACOS_SAFARI) {
             const delta = direction === "down" ? SCROLL_DELTA : -SCROLL_DELTA;
             let step = 0;
             const interval = setInterval(() => {

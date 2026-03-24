@@ -18,9 +18,13 @@ function CVScaleWrapper({ children }) {
 
     useEffect(() => {
         function updateScale() {
-            const availableWidth = window.innerWidth * (1 - 2 * mobilePadding);
+            // Use clientWidth/clientHeight (layout viewport) instead of
+            // innerWidth/innerHeight (visual viewport) so pinch-zoom doesn't
+            // trigger a rescale.
+            const availableWidth =
+                document.documentElement.clientWidth * (1 - 2 * mobilePadding);
             const availableHeight =
-                window.innerHeight * (1 - 2 * mobilePadding);
+                document.documentElement.clientHeight * (1 - 2 * mobilePadding);
             const scale =
                 Math.min(
                     availableWidth / cvWidth,
@@ -70,6 +74,12 @@ function CVContent() {
         if (!scrollContainer) return;
 
         function onScroll() {
+            // Ignore scroll events if the container isn't actually scrollable
+            // (i.e., when zooming on mobile causes the CV to become scrollable)
+            if (scrollContainer.scrollHeight <= scrollContainer.clientHeight) {
+                return;
+            }
+
             const { scrollTop, clientHeight } = scrollContainer;
             const progress = Math.min(Math.max(scrollTop / clientHeight, 0), 1);
             const isMobile = window.innerWidth <= 768;

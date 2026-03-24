@@ -8,6 +8,7 @@ html {
     height: -webkit-fill-available;
     background-color: black;
     margin: 0;
+    scroll-behavior: smooth;
 }
 
 body {

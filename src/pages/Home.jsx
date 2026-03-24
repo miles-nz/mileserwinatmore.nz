@@ -10,7 +10,7 @@ function Home() {
                     Miles Erwin-Atmore
                 </h1>
                 <h2 className="home-subheader" style={glareStyle}>
-                    Software Engineer | Full-Stack Development
+                    Software Engineer | Full-Stack Developer
                 </h2>
             </div>
         </div>
