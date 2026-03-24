@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
 // AuroraBackground: animated aurora effect
@@ -13,31 +13,10 @@ const BLOB_OFFSETS = [
 
 const lerp = (start, end, factor) => start + (end - start) * factor;
 
-const getHeight = () => {
-    return screen.height;
-};
-
 const AuroraBackground = () => {
     const blobRef1 = useRef(null);
     const blobRef2 = useRef(null);
     const blobRef3 = useRef(null);
-    const [dimensions, setDimensions] = useState({
-        width: screen.width,
-        height: getHeight(),
-    });
-
-    useEffect(() => {
-        function updateDimensions() {
-            setDimensions({
-                width: screen.width,
-                height: getHeight(),
-            });
-        }
-        window.addEventListener("orientationchange", updateDimensions);
-        return () => {
-            window.removeEventListener("orientationchange", updateDimensions);
-        };
-    }, []);
 
     useEffect(() => {
         const blobRefs = [blobRef1, blobRef2, blobRef3];
@@ -89,11 +68,8 @@ const AuroraBackground = () => {
         <div
             className="aurora-bg-wrapper"
             style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: dimensions.width,
-                height: dimensions.height,
+                position: "fixed",
+                inset: 0,
             }}
         >
             <div className="aurora-blob aurora-blob-1" ref={blobRef1} />

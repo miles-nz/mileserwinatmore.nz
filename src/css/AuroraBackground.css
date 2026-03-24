@@ -1,5 +1,4 @@
 .aurora-bg-wrapper {
-    overflow: hidden;
     z-index: -1;
     user-select: none;
     -webkit-user-select: none;
@@ -58,22 +57,61 @@
 }
 
 @media (max-width: 768px) {
+    .aurora-bg-wrapper {
+        -webkit-mask-image: linear-gradient(
+            to bottom,
+            transparent 0%,
+            black 40%,
+            black 60%,
+            transparent 100%
+        );
+        mask-image: linear-gradient(
+            to bottom,
+            transparent 0%,
+            black 40%,
+            black 60%,
+            transparent 100%
+        );
+    }
+    .aurora-blob {
+        filter: blur(50px);
+        opacity: 0.9;
+    }
     .aurora-blob-1 {
-        width: 120vw;
-        height: 120vw;
+        width: 90vw;
+        height: 90vw;
         left: -30vw;
         top: 5vw;
+        background: radial-gradient(
+            circle at 30% 30%,
+            #00c87a,
+            var(--cv-primary) 40%,
+            transparent 70%
+        );
     }
     .aurora-blob-2 {
-        width: 120vw;
-        height: 120vw;
+        width: 90vw;
+        height: 90vw;
         right: -30vw;
         top: 5vw;
+        background: radial-gradient(
+            circle at 70% 0%,
+            #c9a8ff,
+            var(--cv-focus) 40%,
+            transparent 70%
+        );
     }
     .aurora-blob-3 {
-        width: 120vw;
-        height: 120vw;
+        width: 90vw;
+        height: 90vw;
         left: -10vw;
         bottom: -5vw;
+        background: radial-gradient(
+            circle at 50% 70%,
+            #e8a030 15%,
+            #e07050 45%,
+            #d95f7a 75%,
+            #d95f7a 100%
+        );
     }
 }
