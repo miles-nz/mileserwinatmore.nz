@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import "../css/PageCarousel.css";
+import useIsZoomed from "../hooks/useIsZoomed";
 
 const SCROLL_STEPS = 8;
 const SCROLL_DELTA = 8;
 const SCROLL_INTERVAL_MS = 30;
 const SCROLL_END_DELAY_MS = 150;
-// Use wheel event workaround on macOS Safari
 const IS_MACOS_SAFARI =
     /^((?!chrome|android).)*safari/i.test(navigator.userAgent) &&
     !/iPhone|iPad|iPod/.test(navigator.userAgent);
@@ -17,6 +17,7 @@ function PageCarousel({ pages }) {
     const scrollEndTimer = useRef(null);
     const [enableUpArrow, setEnableUpArrow] = useState(false);
     const [enableDownArrow, setEnableDownArrow] = useState(true);
+    const isZoomed = useIsZoomed();
 
     useEffect(() => {
         const el = getScrollEl();
@@ -41,6 +42,12 @@ function PageCarousel({ pages }) {
         el.addEventListener("scroll", handleScroll, { passive: true });
         return () => el.removeEventListener("scroll", handleScroll);
     }, [pages.length]);
+
+    useEffect(() => {
+        const el = getScrollEl();
+        if (!el) return;
+        el.style.scrollSnapType = isZoomed ? "none" : "y mandatory";
+    }, [isZoomed]);
 
     const scroll = (direction) => {
         const el = getScrollEl();

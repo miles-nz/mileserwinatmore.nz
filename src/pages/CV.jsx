@@ -74,6 +74,8 @@ function CVContent() {
         if (!scrollContainer) return;
 
         function onScroll() {
+            const isZoomed = (window.visualViewport?.scale ?? 1) > 1.1;
+            if (isZoomed) return;
             // Ignore scroll events if the container isn't actually scrollable
             // (i.e., when zooming on mobile causes the CV to become scrollable)
             if (scrollContainer.scrollHeight <= scrollContainer.clientHeight) {
