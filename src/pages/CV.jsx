@@ -58,6 +58,9 @@ function CVContent() {
     const containerRef = useRef(null);
     const x = useMotionValue(window.innerWidth <= 768 ? "-100vw" : "-60vw");
     const buttonY = useMotionValue("100px");
+    const buttonOpacity = useMotionValue(0);
+    const cvOpacity = useMotionValue(0);
+
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -88,46 +91,57 @@ function CVContent() {
             const startX = isMobile ? -100 : -60;
             x.set(`${startX + progress * Math.abs(startX)}vw`);
             buttonY.set(`${(1 - progress) * 100}px`);
+            buttonOpacity.set(Math.min(Math.max((progress - 0.8) / 0.2, 0), 1));
+            cvOpacity.set(Math.min(Math.max((progress - 0.2) / 0.8, 0), 1));
         }
 
         scrollContainer.addEventListener("scroll", onScroll, {
             passive: true,
         });
         return () => scrollContainer.removeEventListener("scroll", onScroll);
-    }, [x, buttonY]);
+    }, [x, buttonY, buttonOpacity, cvOpacity]);
 
     return (
-        <div className="cv-page-container" ref={containerRef}>
-            <CVScaleWrapper>
-                <motion.div style={{ x, pointerEvents: "none" }}>
-                    <div
-                        className="cv-main-container"
-                        style={{ pointerEvents: "auto" }}
+        <>
+            <div className="bottom-fade" />
+            <div className="cv-page-container" ref={containerRef}>
+                <CVScaleWrapper>
+                    <motion.div
+                        style={{ x, pointerEvents: "none", opacity: cvOpacity }}
                     >
-                        <Header />
-                        <div className="cv-content-grid">
-                            <div className="cv-sidebar">
-                                <Skills />
-                                <Education />
-                            </div>
-                            <div className="cv-main-content">
-                                <Experience />
+                        <div
+                            className="cv-main-container"
+                            style={{ pointerEvents: "auto" }}
+                        >
+                            <Header />
+                            <div className="cv-content-grid">
+                                <div className="cv-sidebar">
+                                    <Skills />
+                                    <Education />
+                                </div>
+                                <div className="cv-main-content">
+                                    <Experience />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </motion.div>
-            </CVScaleWrapper>
-            {isVisible &&
-                createPortal(
-                    <motion.div
-                        className="pdf-download-portal"
-                        style={{ x: "-50%", y: buttonY }}
-                    >
-                        <PDFDownloadButton />
-                    </motion.div>,
-                    document.body,
-                )}
-        </div>
+                    </motion.div>
+                </CVScaleWrapper>
+                {isVisible &&
+                    createPortal(
+                        <motion.div
+                            className="pdf-download-portal"
+                            style={{
+                                x: "-50%",
+                                y: buttonY,
+                                opacity: buttonOpacity,
+                            }}
+                        >
+                            <PDFDownloadButton />
+                        </motion.div>,
+                        document.body,
+                    )}
+            </div>
+        </>
     );
 }
 
