@@ -3,6 +3,13 @@ const Experience = () => (
         <h2>Professional Experience</h2>
         <div className="cv-role">
             <div className="cv-role-header">
+                <strong>Platform Enablement & Automation Manager</strong>
+                <div>The Warehouse Group</div>
+                <div className="cv-dates">May 2026 - Current</div>
+            </div>
+        </div>
+        <div className="cv-role">
+            <div className="cv-role-header">
                 <strong>Solution Engineer</strong>
                 <div>The Warehouse Group</div>
                 <div className="cv-dates">

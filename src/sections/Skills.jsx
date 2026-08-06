@@ -5,10 +5,9 @@ const Skills = () => (
             <div className="cv-skills-section">
                 <h3>Programming Languages</h3>
                 <ul>
-                    <li>JavaScript | TypeScript | ES6+ | Node.js</li>
+                    <li>JavaScript | TypeScript | ES6+ | Node.js | React.js</li>
                     <li>Java | Python | SQL</li>
                     <li>C | C++</li>
-                    <li>HTML | CSS/SASS</li>
                 </ul>
             </div>
             <div className="cv-skills-section">
@@ -17,15 +16,15 @@ const Skills = () => (
                     <li>Full-Stack Web Development</li>
                     <li>API Architecture & Integration</li>
                     <li>Legacy Code Refactoring</li>
-                    <li>UX/UI Implementation (Figma)</li>
+                    <li>Process Automation & AI</li>
                 </ul>
             </div>
             <div className="cv-skills-section">
                 <h3>Tools & Platforms</h3>
                 <ul>
-                    <li>Bitbucket | Github</li>
                     <li>Salesforce Commerce Cloud (SFCC)</li>
                     <li>Jira | Confluence</li>
+                    <li>Git | GitHub | Bitbucket</li>
                 </ul>
             </div>
             <div className="cv-skills-section">
