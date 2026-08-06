@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <radialGradient id="aurora-green">
+      <stop offset="0%" stop-color="#00bc72" />
+      <stop offset="55%" stop-color="#00684a" />
+      <stop offset="100%" stop-color="#00684a" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="aurora-blue">
+      <stop offset="0%" stop-color="#bc9cf0" />
+      <stop offset="55%" stop-color="#3a7a9c" />
+      <stop offset="100%" stop-color="#3a7a9c" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="aurora-orange">
+      <stop offset="0%" stop-color="#da962d" />
+      <stop offset="55%" stop-color="#e07050" />
+      <stop offset="100%" stop-color="#e07050" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="32" height="32" rx="7" ry="7" fill="#292929" />
+  <g style="isolation:isolate" transform="rotate(-35 16 16)">
+    <circle cx="16" cy="10.5" r="10" fill="url(#aurora-green)" style="mix-blend-mode:lighten" />
+    <circle cx="20.76" cy="18.75" r="10" fill="url(#aurora-blue)" style="mix-blend-mode:lighten" />
+    <circle cx="11.24" cy="18.75" r="10" fill="url(#aurora-orange)" style="mix-blend-mode:lighten" />
+  </g>
+</svg>
