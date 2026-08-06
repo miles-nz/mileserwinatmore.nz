@@ -243,15 +243,21 @@ h3 {
 .cv-experience .cv-dates {
     font-size: 11px;
     color: var(--cv-dates);
-    margin-bottom: 8px;
 }
 .cv-experience strong {
     color: inherit;
     font-weight: 700;
 }
 
+.cv-role {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
 .cv-role ul {
     padding-left: 18px;
+    margin: 0;
 }
 
 /* --- Download Button Portal --- */

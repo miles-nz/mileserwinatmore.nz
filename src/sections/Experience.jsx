@@ -7,6 +7,19 @@ const Experience = () => (
                 <div>The Warehouse Group</div>
                 <div className="cv-dates">May 2026 - Current</div>
             </div>
+            <ul>
+                <li>
+                    <strong>Own the automation roadmap</strong> for Salesforce
+                    Commerce Cloud ecommerce platforms across The Warehouse and
+                    Warehouse Stationery, developing AI-assisted tooling and
+                    custom-built solutions to eliminate manual processes.
+                </li>
+                <li>
+                    <strong>Manage vendor relationships</strong> and support
+                    platform users as the technical SFCC SME for the Omni
+                    Experience team.
+                </li>
+            </ul>
         </div>
         <div className="cv-role">
             <div className="cv-role-header">
@@ -61,12 +74,6 @@ const Experience = () => (
                     </strong>{" "}
                     by implementing precise New Relic alerting thresholds for
                     site response time and critical automated jobs.
-                </li>
-                <li>
-                    <strong>Strengthened Agile delivery</strong> through
-                    technical ticket refinements and high quality documentation,
-                    providing additional support by facilitating ceremonies to
-                    maintain team momentum.
                 </li>
             </ul>
         </div>

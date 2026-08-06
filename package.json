@@ -29,14 +29,5 @@
     "globals": "^16.5.0",
     "vite": "^7.2.4",
     "vite-plugin-gh-pages": "^1.0.1"
-  },
-  "eslintConfig": {
-    "plugins": [
-      "react"
-    ],
-    "rules": {
-      "react/jsx-uses-react": "error",
-      "react/jsx-uses-vars": "error"
-    }
   }
 }

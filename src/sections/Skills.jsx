@@ -32,7 +32,7 @@ const Skills = () => (
                 <ul>
                     <li>Agile | Scrum | SDLC</li>
                     <li>Unit Testing | Regression Testing</li>
-                    <li>Critical Incident Response (On-call)</li>
+                    <li>Incident Response</li>
                 </ul>
             </div>
         </div>

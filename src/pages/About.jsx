@@ -1,5 +1,4 @@
 import { useState } from "react";
-// eslint-disable-next-line no-unused-vars
 import { motion } from "motion/react";
 
 import Button from "../components/Button.jsx";
