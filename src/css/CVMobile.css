@@ -1,0 +1,244 @@
+@import "./cv-tokens.css";
+
+/* --- Page shell --- */
+.cvm-page-container {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    z-index: 2;
+}
+
+.cvm-main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: var(--cv-width);
+    height: var(--cv-height);
+    padding: 40px;
+    background: var(--cv-bg);
+    border-radius: 19px;
+    box-shadow: var(--cv-shadow);
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+}
+
+.cvm-body {
+    color: var(--cv-body-text);
+    font-family: "Inter", sans-serif;
+}
+
+/* --- Header --- */
+.cvm-header {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+}
+
+/* Fixed px so the heading weight stays consistent, compact or zoomed. */
+.cvm-name {
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--cv-primary);
+    margin: 0;
+    letter-spacing: -1px;
+    font-family: "Stack Sans Notch", "Inter", sans-serif;
+}
+
+/* Name and contact links share one zoomable trigger - row layout when
+   compact, stacked column when zoomed in. */
+.cvm-contact {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: #222;
+}
+
+.cvm-contact-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+}
+
+.cvm-contact-links a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* --- Overview grid (compact, tappable) --- */
+.cvm-content-grid {
+    flex: 1 1 auto;
+    display: grid;
+    grid-template-columns: 194px 1fr;
+    gap: 5px;
+    overflow: hidden;
+}
+
+.cvm-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: var(--cv-sidebar-bg);
+    border-left: 3px solid var(--cv-primary);
+    padding: 12px 5px 0px 10px;
+    box-sizing: border-box;
+    width: 199px;
+    overflow: hidden;
+}
+
+.cvm-main-content {
+    min-width: 0;
+    padding: 12px 0px 0px 10px;
+    overflow: hidden;
+}
+
+.cvm-skills,
+.cvm-education,
+.cvm-experience {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cvm-skills-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cvm-body h2 {
+    font-size: 16px;
+    color: var(--cv-header-text);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    margin: 0;
+    border-bottom: 1px solid var(--cv-dividers);
+    font-family: "Stack Sans Text", "Inter", sans-serif;
+}
+
+.cvm-body h3 {
+    margin: 0;
+}
+
+/* Sized in em so this content scales uniformly between the compact
+   overview and the zoomed overlay. */
+.cvm-skills-section h3 {
+    font-size: 1.05em;
+    font-weight: 700;
+    color: var(--cv-body-text);
+}
+
+.cvm-skills-section ul,
+.cvm-role ul {
+    list-style-type: disc;
+    list-style-position: outside;
+    padding-left: 1.2em;
+    margin: 0.3em 0 0;
+    font-size: 1em;
+}
+
+.cvm-skills-section li,
+.cvm-role li {
+    margin-bottom: 0.3em;
+}
+
+.cvm-degree {
+    font-size: 1.05em;
+    color: var(--cv-body-text);
+    font-weight: 700;
+}
+
+.cvm-specialisation {
+    font-size: 0.95em;
+    margin-top: 0.2em;
+}
+
+.cvm-university {
+    font-size: 0.85em;
+    margin-top: 0.15em;
+}
+
+.cvm-role-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.cvm-role-header strong {
+    font-size: 1.05em;
+    font-weight: 700;
+}
+
+.cvm-dates {
+    font-size: 0.85em;
+    color: var(--cv-dates);
+}
+
+.cvm-role-summary {
+    font-size: 0.95em;
+    margin: 0.4em 0;
+}
+
+/* Compact, thumbnail-scale text - legibility comes from zooming in, not
+   this view. :not(.cv-zoom-open) keeps this from overriding the zoomed
+   view's padding via higher specificity. */
+.cvm-skills-sections.cv-zoomable:not(.cv-zoom-open),
+.cvm-education-entry.cv-zoomable:not(.cv-zoom-open),
+.cvm-role.cv-zoomable:not(.cv-zoom-open),
+.cvm-contact.cv-zoomable:not(.cv-zoom-open) {
+    font-size: 11px;
+    border-radius: 6px;
+    padding: 2px;
+}
+
+/* Full-screen zoomed view, portaled outside the scaled canvas so this
+   font-size renders at true device pixels. Targets .cv-zoom-open-inner -
+   the actual content wrapper - since non-inherited properties like `gap`
+   need to be set there directly. */
+.cvm-skills-sections.cv-zoom-open-inner,
+.cvm-education-entry.cv-zoom-open-inner,
+.cvm-role.cv-zoom-open-inner,
+.cvm-contact.cv-zoom-open-inner {
+    font-size: 20px;
+}
+
+.cvm-skills-sections.cv-zoom-open-inner {
+    gap: 28px;
+}
+
+/* Zoomed view stacks the name/links instead of the compact row layout;
+   underline marks the links as tappable tel:/mailto: actions. */
+.cvm-contact.cv-zoom-open-inner {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.cvm-contact.cv-zoom-open-inner .cvm-contact-links {
+    align-items: flex-start;
+    gap: 1em;
+}
+
+.cvm-contact.cv-zoom-open-inner .cvm-name {
+    font-size: 38px;
+}
+
+.cvm-contact.cv-zoom-open-inner a {
+    text-decoration: underline;
+    text-decoration-color: var(--cv-primary);
+}
+
+/* Contact has less content than the other sections, so a smaller
+   padding gutter. */
+.cv-zoom-open.cvm-contact .cv-zoom-open-surface {
+    padding: 56px 28px 32px;
+}

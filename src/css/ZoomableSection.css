@@ -1,0 +1,160 @@
+@import "./cv-tokens.css";
+
+.cv-zoomable {
+    color: var(--cv-body-text);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.15s cubic-bezier(0.4, 1.3, 0.6, 1);
+}
+
+.cv-zoomable:active {
+    transform: scale(0.97);
+}
+
+/* Full-screen zoomed-into-the-document view. No opaque background needed -
+   confirmed iOS Safari's chrome stays black without one - so this is a
+   frosted blur instead. Transform is driven frame-by-frame by the FLIP
+   animation in ZoomableSection.jsx, so no CSS transition here. */
+.cv-zoom-open {
+    transition: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.cv-zoom-open:active {
+    transform: none;
+}
+
+/* Hugs its content (height: auto), centered via top: 50% + translateY.
+   `max-height` caps it once content is long enough to need scrolling. */
+.cv-zoom-open-surface {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    height: auto;
+    max-height: calc(100% - 24px);
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    border-radius: 28px;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 64px 28px 72px;
+    font-size: 19px;
+    color: var(--cv-body-text);
+}
+
+.cv-zoom-open--sidebar .cv-zoom-open-surface {
+    background: var(--cv-sidebar-bg);
+    border-left: 3px solid var(--cv-primary);
+}
+
+.cv-zoom-open--main .cv-zoom-open-surface {
+    background: var(--cv-bg);
+}
+
+.cv-zoom-open-inner {
+    /* flex: 1, not height: 100% - the surface's height is auto/capped, not
+       definite, and percentage heights against that are unreliable on Safari. */
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    /* Edge fade mask is computed in JS (ZoomableSection.jsx). */
+}
+
+/* Sits in the top padding gutter, above .cv-zoom-open-inner. Fixed px so
+   it stays a small label regardless of the section's font-size. */
+.cv-zoom-breadcrumb {
+    position: absolute;
+    top: 24px;
+    left: 28px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--cv-primary);
+    opacity: 0.8;
+}
+
+/* Mirrors the breadcrumb's positioning, opposite corner. */
+.cv-zoom-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    padding: 0;
+    color: var(--cv-body-text);
+    opacity: 0.65;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+        opacity 0.15s ease,
+        transform 0.15s cubic-bezier(0.4, 1.3, 0.6, 1);
+}
+
+.cv-zoom-close:active {
+    opacity: 1;
+    transform: scale(0.9);
+}
+
+/* --- Scroll hint: a bouncing chevron indicating more content below --- */
+.cv-zoom-scroll-hint {
+    position: fixed;
+    left: 50%;
+    bottom: 22px;
+    width: 22px;
+    height: 22px;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+    z-index: 10001;
+}
+
+.cv-zoom-scroll-hint::before,
+.cv-zoom-scroll-hint::after {
+    content: "";
+    position: absolute;
+    top: 40%;
+    width: 60%;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--cv-primary);
+}
+
+.cv-zoom-scroll-hint::before {
+    left: 0;
+    transform: rotate(45deg);
+}
+
+.cv-zoom-scroll-hint::after {
+    right: 0;
+    transform: rotate(-45deg);
+}
+
+.cv-zoom-scroll-hint--visible {
+    opacity: 0.65;
+    animation: cv-zoom-scroll-hint-bounce 1.4s ease-in-out infinite;
+}
+
+@keyframes cv-zoom-scroll-hint-bounce {
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(6px);
+    }
+}

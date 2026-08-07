@@ -1,0 +1,68 @@
+@import "./cv-tokens.css";
+
+/* --- Download Button Portal --- */
+.pdf-download-portal {
+    position: fixed;
+    bottom: 0.5rem;
+    left: 50%;
+    z-index: 9999;
+}
+
+/* --- Download Button (mobile base) --- */
+.pdf-download-fab {
+    margin: 0;
+    border-radius: 15px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.pdf-download-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 14px;
+    transition: transform 0.18s cubic-bezier(0.4, 1.3, 0.6, 1);
+}
+
+.pdf-download-icon {
+    width: 1.8rem;
+    height: 1.8rem;
+    flex-shrink: 0;
+    display: block;
+}
+
+.pdf-download-label {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    font-family: "Inter", sans-serif;
+}
+
+.pdf-download-btn:focus {
+    outline: 2px solid var(--cv-focus);
+}
+
+.pdf-download-btn:hover {
+    opacity: 0.75;
+    color: #fff;
+}
+
+/* --- Download Button (tablet and above) --- */
+@media (min-width: 768px) {
+    .pdf-download-portal {
+        bottom: 0.5rem;
+        left: 50%;
+    }
+    .pdf-download-btn {
+        padding: 6px;
+    }
+    .pdf-download-icon {
+        width: 24px;
+        height: 24px;
+    }
+    .pdf-download-label {
+        font-size: 12px;
+    }
+}

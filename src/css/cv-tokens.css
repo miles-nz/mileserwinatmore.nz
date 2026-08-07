@@ -1,0 +1,15 @@
+/* Shared CV color/shadow tokens, used by CV.css and CVMobile.css. */
+:root {
+    --cv-primary: #00684a;
+    --cv-primary-dark: #00553a;
+    --cv-focus: #3a7a9c;
+    --cv-bg: #f8fafb;
+    --cv-sidebar-bg: #f0f2ef;
+    --cv-header-text: #0b3b2e;
+    --cv-body-text: #1a1f1c;
+    --cv-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+    --cv-dividers: #c2c7c0;
+    --cv-dates: #7d8582;
+    --cv-width: 649px;
+    --cv-height: 840px;
+}

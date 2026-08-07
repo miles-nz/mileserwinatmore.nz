@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../css/ClickAnimations.css";
 import { useGlarePos } from "../hooks/useGlarePos.js";
+import { HEADER } from "../data/cvData.jsx";
 
 const ANIMATIONS = ["colourflash"];
 
@@ -26,17 +27,14 @@ const Header = () => {
                     cursor: "pointer",
                 }}
             >
-                Miles Erwin-Atmore
+                {HEADER.name}
             </h1>
             <div className="cv-contact">
-                <a href="tel:+642102408271" className="cv-contact-link">
-                    <span>021 0240 8271</span>
+                <a href={HEADER.phoneHref} className="cv-contact-link">
+                    <span>{HEADER.phone}</span>
                 </a>
-                <a
-                    href="mailto:mileserwinatmore@gmail.com"
-                    className="cv-contact-link"
-                >
-                    <span>mileserwinatmore@gmail.com</span>
+                <a href={HEADER.emailHref} className="cv-contact-link">
+                    <span>{HEADER.email}</span>
                 </a>
             </div>
         </header>

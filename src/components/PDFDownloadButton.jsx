@@ -1,3 +1,5 @@
+import "../css/PDFDownloadButton.css";
+
 const PDFDownloadButton = () => (
     <a
         href="/Miles Erwin-Atmore CV.pdf"

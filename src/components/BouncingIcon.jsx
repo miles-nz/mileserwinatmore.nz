@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 
-function SpinningIcon({ text }) {
+function BouncingIcon({ text }) {
     return (
         <motion.div
             animate={{
@@ -17,4 +17,4 @@ function SpinningIcon({ text }) {
         </motion.div>
     );
 }
-export default SpinningIcon;
+export default BouncingIcon;
